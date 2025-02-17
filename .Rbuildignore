@@ -1,0 +1,11 @@
+^\.here$
+^\.github$
+^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^codecov\.yml$
+^index\.md$
+^README\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
