@@ -2,8 +2,8 @@
 
 export("%>%")
 export(check_starting_places)
+export(notification_smtp_settings)
 export(send_email_notification)
-export(smtp_settings)
 export(zut25_urls)
 importFrom(httr,GET)
 importFrom(httr,content)
