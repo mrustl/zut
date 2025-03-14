@@ -16,6 +16,8 @@ jobs:
     env:
       CURL_SSL_BACKEND: "openssl"
       GITHUB_PAT: ${{ secrets.MY_GITHUB_PAT}}
+      PUSHOVER_APP: ${{ secrets.PUSHOVER_APP}}
+      PUSHOVER_USER: ${{ secrets.PUSHOVER_USER}}
     steps:
       - uses: actions/checkout@v2
 
