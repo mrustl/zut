@@ -4,6 +4,9 @@ on:
       - main
       - master
       - dev
+      
+  schedule:
+    - cron: '*/10 * * * *'
 
 name: pkgdown
 

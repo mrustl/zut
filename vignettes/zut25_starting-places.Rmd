@@ -1,0 +1,31 @@
+---
+title: "ZUT25: Check Starting Places for Mittenwald And Longer Trails"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ZUT25: Check Starting Places for Mittenwald And Longer Trails}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+### Select Mittenwald Trail or Longer Tracks 
+zut_urls <- zut::zut25_urls()[1:4]
+zut_urls
+
+
+### Scrape Starting Places Overview Website and Send Pushover Notification 
+### (in case a starting place is available)
+
+sapply(zut_urls, function(zut_url) { 
+  zut::check_starting_places(url = zut_url, 
+                             send_pushover_notification = TRUE)
+})
+
+```

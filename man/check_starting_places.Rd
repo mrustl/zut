@@ -4,18 +4,12 @@
 \alias{check_starting_places}
 \title{ZUT25 check for available starting places for each track}
 \usage{
-check_starting_places(
-  url,
-  recipient_email = Sys.getenv("NOTIFICATION_RECIPIENT_EMAIL"),
-  send_email = FALSE
-)
+check_starting_places(url, send_pushover_notification = FALSE)
 }
 \arguments{
 \item{url}{one element of \code{\link{zut25_urls}}}
 
-\item{recipient_email}{recipient email (default: Sys.getenv("NOTIFICATION_RECIPIENT_EMAIL"))}
-
-\item{send_email}{should notifiation emails be sent (default: FALSE)}
+\item{send_pushover_notification}{should pushover notifiation be sent (default: FALSE)}
 }
 \value{
 either 0 (if no starting place is available) or number of available

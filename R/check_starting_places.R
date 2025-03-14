@@ -16,8 +16,7 @@ zut25_urls <- function()  {
 #' ZUT25 check for available starting places for each track
 #'
 #' @param url one element of \code{\link{zut25_urls}}
-#' @param recipient_email  recipient email (default: Sys.getenv("NOTIFICATION_RECIPIENT_EMAIL"))
-#' @param send_email should notifiation emails be sent (default: FALSE)
+#' @param send_pushover_notification should pushover notifiation be sent (default: FALSE)
 #' @returns either 0 (if no starting place is available) or number of available 
 #' places as text. in additon an email will be sent to recipient email in case 
 #' a starting place is available
@@ -27,16 +26,16 @@ zut25_urls <- function()  {
 #' 
 #' @importFrom httr content GET status_code
 #' @importFrom rvest html_node html_text  
+#' @importFrom pushoverr pushover_emergency
 check_starting_places <- function(url, 
-                                  recipient_email = Sys.getenv("NOTIFICATION_RECIPIENT_EMAIL"),
-                                  send_email = FALSE) {
+                                  send_pushover_notification = FALSE) {
 
 # Webseite abrufen
 website <- httr::GET(url[[1]])
 
-
 # Ueberprüfen, ob die Anfrage erfolgreich war
-if (httr::status_code(website) == 200) {
+res <- if (httr::status_code(website) == 200) {
+
   # Inhalt der Webseite als HTML parsen
   parsed_html <- rvest::read_html(httr::content(website, as = "text", encoding = "UTF-8"))
   
@@ -60,27 +59,31 @@ if (httr::status_code(website) == 200) {
   
   # Ausgabe des extrahierten Textes
   if (tolower(extracted_text) == "kein") {
-    message(sprintf("Curently there is NO starting place available (%s)", Sys.time()))
+    message(sprintf("%s: currently there is NO starting place available (%s)", 
+                    names(url), 
+                    Sys.time()))
     0
     
   } else {
-    txt <- sprintf("Curently there are %s starting place(s) available (%s). Visit '%s' as soon as possible", 
+    txt <- sprintf("%s: currently there are %s starting place(s) available (%s). Visit %s as soon as possible", 
+                   names(url),
                    extracted_text, 
                    Sys.time(),
                    url)
-    message(sprintf("Aktuell sind %s Startplatz(e) verfügbar (%s)", 
-                    extracted_text, 
-                    Sys.time()))
     
-    send_email_notification(to = recipient_email, 
-                            subject = sprintf("Startplatz verfügbar fuer '%s'!",
-                                              names(url)), 
-                            body = txt)
+   if(send_pushover_notification) {
+    pushoverr::pushover_emergency(message = txt, 
+                                  url = as.character(url),
+                                  url_title = sprintf("Starting place main website for '%s'",
+                                                      names(url)))
+   }  
     
-    return(extracted_text)
+    extracted_text
     
   }
   
 }
+  
+  return(res)  
 }
 
