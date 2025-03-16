@@ -23,9 +23,13 @@ zut_urls
 ### Scrape Starting Places Overview Website and Send Pushover Notification 
 ### (in case a starting place is available)
 
-sapply(zut_urls, function(zut_url) { 
+sapply(seq_along(zut_urls), function(i) {
+  zut_url <- zut_urls[i]
+  print(zut_url)
   zut::check_starting_places(url = zut_url, 
                              send_pushover_notification = TRUE)
-})
+  }
+)
+
 
 ```

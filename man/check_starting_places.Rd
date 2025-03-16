@@ -4,12 +4,14 @@
 \alias{check_starting_places}
 \title{ZUT25 check for available starting places for each track}
 \usage{
-check_starting_places(url, send_pushover_notification = FALSE)
+check_starting_places(url, send_pushover_notification = FALSE, dbg = TRUE)
 }
 \arguments{
 \item{url}{one element of \code{\link{zut25_urls}}}
 
 \item{send_pushover_notification}{should pushover notifiation be sent (default: FALSE)}
+
+\item{dbg}{print debug messages (default: TRUE)}
 }
 \value{
 either 0 (if no starting place is available) or number of available

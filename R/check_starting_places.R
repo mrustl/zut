@@ -17,6 +17,7 @@ zut25_urls <- function()  {
 #'
 #' @param url one element of \code{\link{zut25_urls}}
 #' @param send_pushover_notification should pushover notifiation be sent (default: FALSE)
+#' @param dbg print debug messages (default: TRUE)
 #' @returns either 0 (if no starting place is available) or number of available 
 #' places as text. in additon an email will be sent to recipient email in case 
 #' a starting place is available
@@ -28,7 +29,8 @@ zut25_urls <- function()  {
 #' @importFrom rvest html_node html_text  
 #' @importFrom pushoverr pushover_emergency
 check_starting_places <- function(url, 
-                                  send_pushover_notification = FALSE) {
+                                  send_pushover_notification = FALSE,
+                                  dbg = TRUE) {
 
 # Webseite abrufen
 website <- httr::GET(url[[1]])
@@ -71,8 +73,13 @@ res <- if (httr::status_code(website) == 200) {
                    Sys.time(),
                    url)
     
+    stopifnot(length(txt) == 1)
+    
    if(send_pushover_notification) {
-    pushoverr::pushover_emergency(message = txt, 
+    
+     if(dbg) message(txt)
+    
+     pushoverr::pushover_emergency(message = txt, 
                                   url = as.character(url),
                                   url_title = sprintf("Starting place main website for '%s'",
                                                       names(url)))
