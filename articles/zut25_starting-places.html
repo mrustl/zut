@@ -85,13 +85,26 @@
 <span><span class="co">### Scrape Starting Places Overview Website and Send Pushover Notification </span></span>
 <span><span class="co">### (in case a starting place is available)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">zut_urls</span>, <span class="kw">function</span><span class="op">(</span><span class="va">zut_url</span><span class="op">)</span> <span class="op">{</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">zut_urls</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">zut_url</span> <span class="op">&lt;-</span> <span class="va">zut_urls</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">zut_url</span><span class="op">)</span></span>
 <span>  <span class="fu">zut</span><span class="fu">::</span><span class="fu"><a href="../reference/check_starting_places.html">check_starting_places</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">zut_url</span>, </span>
 <span>                             send_pushover_notification <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; zut25_ultratrail    zut25_ehrwald   zut25_leutasch zut25_mittenwald </span></span>
-<span><span class="co">#&gt;                0                0                0                0</span></span></code></pre></div>
+<span>  <span class="op">}</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; $zut25_ultratrail</span></span>
+<span><span class="co">#&gt; [1] "https://www.datasport.de/anmeldeservice/147/2845/9954"</span></span>
+<span><span class="co">#&gt; zut25_ultratrail: currently there is NO starting place available (2025-03-16 15:56:04.301887)</span></span>
+<span><span class="co">#&gt; $zut25_ehrwald</span></span>
+<span><span class="co">#&gt; [1] "https://www.datasport.de/anmeldeservice/147/2845/9955"</span></span>
+<span><span class="co">#&gt; zut25_ehrwald: currently there is NO starting place available (2025-03-16 15:56:04.585538)</span></span>
+<span><span class="co">#&gt; $zut25_leutasch</span></span>
+<span><span class="co">#&gt; [1] "https://www.datasport.de/anmeldeservice/147/2845/9956"</span></span>
+<span><span class="co">#&gt; zut25_leutasch: currently there are 1 starting place(s) available (2025-03-16 15:56:04.845646). Visit https://www.datasport.de/anmeldeservice/147/2845/9956 as soon as possible</span></span>
+<span><span class="co">#&gt; $zut25_mittenwald</span></span>
+<span><span class="co">#&gt; [1] "https://www.datasport.de/anmeldeservice/147/2845/9957"</span></span>
+<span><span class="co">#&gt; zut25_mittenwald: currently there is NO starting place available (2025-03-16 15:56:05.648889)</span></span>
+<span><span class="co">#&gt; [1] "0" "0" "1" "0"</span></span></code></pre></div>
   </main>
 </div>
 
