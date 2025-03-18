@@ -79,10 +79,10 @@ res <- if (httr::status_code(website) == 200) {
     
      if(dbg) message(txt)
     
-     pushoverr::pushover_emergency(message = txt, 
-                                  url = as.character(url),
-                                  url_title = sprintf("Starting place main website for '%s'",
-                                                      names(url)))
+     pushoverr::pushover_silent(message = txt,
+                                url = as.character(url),
+                                url_title = sprintf("Starting place main website for '%s'",
+                                                    names(url)))
    }  
     
     extracted_text
