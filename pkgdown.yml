@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   zut25_starting-places: zut25_starting-places.html
-last_built: 2025-03-25T17:09Z
+last_built: 2025-03-25T17:38Z
 urls:
   reference: https://mrustl.github.io/zut/reference
   article: https://mrustl.github.io/zut/articles
